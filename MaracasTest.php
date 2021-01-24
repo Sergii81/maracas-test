@@ -38,6 +38,7 @@ class MaracasTest
             $fields['url'][] = $item->link;
             foreach ($item->children('amzn', true)->products as $products) {
                 foreach ($products as $product) {
+                    $fields['asin'][] = substr($product->productURL, -11, -1);
                     $fields['product_url'][] = $product->productURL;
                     $fields['product_headline'][] = strip_tags($product->productHeadline);
                     if($product->introtext) {
