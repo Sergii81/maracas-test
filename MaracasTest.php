@@ -40,36 +40,36 @@ class MaracasTest
                 foreach ($products as $product) {
                     $fields['asin'][] = substr($product->productURL, -11, -1);
                     $fields['product_url'][] = $product->productURL;
-                    $fields['product_headline'][] = strip_tags($product->productHeadline);
+                    $fields['product_name'][] = strip_tags($product->productHeadline);
                     if($product->introtext) {
-                        $fields['introtext'][] = strip_tags($product->introtext);
+                        $fields['amazon_introtext'][] = strip_tags($product->introtext);
                     }
                     if($product->award) {
-                        $fields['award'][] = strip_tags($product->award);
+                        $fields['amazon_award'][] = strip_tags($product->award);
                     }
                     if($product->productSummary) {
-                        $fields['product_summary'][] = strip_tags($product->productSummary);
+                        $fields['amazon_product_summary'][] = strip_tags($product->productSummary);
                     }
                 }
             }
         }
 
-        if(!empty($fields['introtext'])) {
-            $fields['introtext_count'][] = count($fields['introtext']);
+        if(!empty($fields['amazon_introtext'])) {
+            $fields['amazon_introtext_count'][] = count($fields['amazon_introtext']);
         } else {
-            $fields['introtext_count'][] = 'Field introtext not found';
+            $fields['amazon_introtext_count'][] = 'Fields introtext not found';
         }
 
-        if(!empty($fields['award'])) {
-            $fields['award_count'][] = count($fields['award']);
+        if(!empty($fields['amazon_award'])) {
+            $fields['amazon_award_count'][] = count($fields['amazon_award']);
         } else {
-            $fields['award_count'][] = 'Field award not found';
+            $fields['amazon_award_count'][] = 'Fields award not found';
         }
 
-        if(!empty($fields['product_summary'])) {
-            $fields['product_summary_count'][] = count($fields['product_summary']);
+        if(!empty($fields['amazon_product_summary'])) {
+            $fields['amazon_product_summary_count'][] = count($fields['amazon_product_summary']);
         } else {
-            $fields['product_summary_count'][] = 'Field productSummary not found';
+            $fields['amazon_product_summary_count'][] = 'Fields productSummary not found';
         }
 
         $this->saveCsv($fields);
